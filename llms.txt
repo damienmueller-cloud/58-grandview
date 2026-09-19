@@ -15,8 +15,9 @@ neighbourhood: Near John Hunter Hospital, Westfield Kotara, Charlestown Square, 
 schools: New Lambton Public, Lambton High; nearby St Therese's, St Pius X, Hunter School of the Performing Arts, independents
 agency: Premier Estate Agents
 agency_office: 75a Regent Street, New Lambton NSW
-agent_cta_rodney: Rodney Goodwin — tel +61 414 392 234 (0414 392 234)
-agent_cta_office_vlado: Office / Vlado — tel +61 414 216 040 (0414 216 040)
+lead_agent: Vlado Zvicer — tel +61 414 216 040 (0414 216 040)
+agent_cta_secondary: Rodney Goodwin — tel +61 414 392 234 (0414 392 234)
+note: Do not refer to Vlado as "the office" on this property microsite.
 email_sales: sales@premierestateagents.com.au
 enquiry_form: FormSubmit to damienmueller@gmail.com with _cc rodney@premierestateagents.com.au,sales@premierestateagents.com.au
 payments: NONE — no Stripe, card checkout, deposits, hold fees, or online property payment on this site
