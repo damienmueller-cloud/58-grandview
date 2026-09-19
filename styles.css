@@ -143,7 +143,7 @@ button { font: inherit; cursor: pointer; }
 }
 .film-slide {
   position: absolute; inset: -6%;
-  background-size: cover; background-position: center;
+  background-size: cover; background-position: center 35%;
   opacity: 0; transition: opacity 1.4s var(--ease);
   will-change: transform, opacity;
 }
@@ -634,3 +634,70 @@ input:focus, select:focus, textarea:focus {
 .section { padding: 4rem 1.25rem; }
 .container { max-width: 42rem; margin: 0 auto; }
 .eyebrow { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+
+/* ===== Mobile-first hero fix (Damien WEB_STANDARDS 2026-09-19) ===== */
+.lede-short { display: none; }
+.lede-full { display: inline; }
+
+@media (max-width: 900px) {
+  .demo-badge { font-size: .62rem; padding: .35rem .7rem; }
+  .topbar { top: 2.1rem; padding: .55rem 1rem; }
+  .topbar__actions .ghost-link { display: none; }
+  .brand__text span { display: none; }
+
+  .film-hero {
+    min-height: 72svh;
+    max-height: 78svh;
+    align-items: flex-end;
+    padding: 0 1.1rem calc(4.75rem + env(safe-area-inset-bottom));
+  }
+  .film-slide {
+    inset: 0;
+    background-size: cover !important;
+    background-position: center 28% !important;
+  }
+  .film-video {
+    object-fit: cover;
+    object-position: center 28%;
+  }
+  .film-vignette {
+    background:
+      linear-gradient(180deg, rgba(7,13,24,.5) 0%, transparent 32%, transparent 42%, rgba(7,13,24,.88) 100%);
+  }
+  .film-title { font-size: clamp(2.35rem, 11vw, 3.1rem); }
+  .film-lede { margin-bottom: .85rem; font-size: .92rem; }
+  .lede-full { display: none; }
+  .lede-short { display: inline; }
+  .film-specs {
+    gap: .5rem 1rem; margin: 0 0 1rem; padding: .7rem 0;
+  }
+  .film-specs strong { font-size: 1.35rem; }
+  .film-actions { gap: .55rem; }
+  .desktop-only { display: none !important; }
+  .scroll-cue { display: none; }
+
+  /* Sticky bar: calls live here — don’t duplicate over hero */
+  .mobile-cta {
+    grid-template-columns: 1fr 1fr 1.2fr;
+  }
+  .mobile-cta a {
+    min-height: 48px;
+    padding: .7rem .35rem;
+  }
+
+  /* Chapter sticky photos also cover properly */
+  .chapter__sticky-bg {
+    background-size: cover !important;
+    background-position: center 30% !important;
+  }
+  .chapter { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 420px) {
+  .film-hero {
+    min-height: 68svh;
+    max-height: 72svh;
+  }
+  .film-sub { font-size: .78rem; letter-spacing: .1em; }
+}
+
