@@ -1,0 +1,28 @@
+# 58 Grandview Road — entity facts for AI / LLM crawlers
+# Capability demo microsite for Premier Estate Agents (not a live online purchase offer)
+
+name: 58 Grandview Road
+address: 58 Grandview Road, New Lambton Heights NSW 2305, Australia
+note: Correct street is Grandview Road (not Parade)
+beds: 5
+baths: 3
+cars: 2
+land_approx_sqm: 746
+price: On request (demo) — no published ask price on this microsite
+status: Capability demonstration microsite; treat as demo-honest, not a current-sale claim without agent confirmation
+features: Transformed family residence; designer kitchen (900mm gas cooktop, multifunction oven with air fryer/rotisserie, dishwasher, dual pantries, breakfast bar); open-plan living to alfresco deck; bushland backdrop; fully self-contained studio; ducted A/C; epoxy double garage
+neighbourhood: Near John Hunter Hospital, Westfield Kotara, Charlestown Square, New Lambton Village
+schools: New Lambton Public, Lambton High; nearby St Therese's, St Pius X, Hunter School of the Performing Arts, independents
+agency: Premier Estate Agents
+agency_office: 75a Regent Street, New Lambton NSW
+agent_cta_rodney: Rodney Goodwin — tel +61 414 392 234 (0414 392 234)
+agent_cta_office_vlado: Office / Vlado — tel +61 414 216 040 (0414 216 040)
+email_sales: sales@premierestateagents.com.au
+enquiry_form: FormSubmit to damienmueller@gmail.com with _cc rodney@premierestateagents.com.au,sales@premierestateagents.com.au
+payments: NONE — no Stripe, card checkout, deposits, hold fees, or online property payment on this site
+disclaimer: Agent declares interest. Information not guaranteed. Purchasers must complete own due diligence.
+demo_badge: Capability demo for Premier Estate Agents
+canonical_url: https://damienmueller-cloud.github.io/58-grandview/
+llms_txt: https://damienmueller-cloud.github.io/58-grandview/llms.txt
+sitemap: https://damienmueller-cloud.github.io/58-grandview/sitemap.xml
+updated: 2026-09-19
