@@ -138,6 +138,19 @@ button { font: inherit; cursor: pointer; }
   .film-hero { padding-left: calc(var(--rail-w) + 1.5rem); }
 }
 
+
+/* LCP hero image — first paint, no CSS-bg carousel cost */
+.film-lcp {
+  position: absolute; inset: 0; z-index: 1; margin: 0;
+}
+.film-lcp img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  display: block;
+}
+.film-slide[data-bg] { background-image: none; }
+
 .film-stage {
   position: absolute; inset: 0; background: #000;
 }

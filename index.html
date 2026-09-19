@@ -8,6 +8,8 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#070d18" />
   <link rel="canonical" href="https://damienmueller-cloud.github.io/58-grandview/" />
+  <link rel="preload" as="image" href="images/hero-lcp.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/hero-lcp.jpg" type="image/jpeg" fetchpriority="high" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="llms" href="llms.txt" type="text/plain" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -145,13 +147,23 @@
     <!-- FILM HERO -->
     <section class="film-hero" id="arrive" data-chapter="arrive" aria-label="Arrive — cinematic opening">
       <div class="film-stage" id="film-stage" aria-hidden="true">
-        <div class="film-slide is-active ken-a" style="background-image:url('images/photo-01.jpg')"></div>
-        <div class="film-slide ken-b" style="background-image:url('images/photo-02.jpg')"></div>
-        <div class="film-slide ken-c" style="background-image:url('images/photo-07.jpg')"></div>
-        <div class="film-slide ken-a" style="background-image:url('images/photo-03.jpg')"></div>
-        <div class="film-slide ken-b" style="background-image:url('images/photo-15.jpg')"></div>
-        <video class="film-video" id="hero-video" muted playsinline loop preload="metadata" poster="images/photo-01.jpg">
-          <source src="media/hero-reel.webm" type="video/webm" />
+        <picture class="film-lcp">
+          <source srcset="images/hero-lcp.webp" type="image/webp" />
+          <img
+            src="images/hero-lcp.jpg"
+            alt="Street frontage of 58 Grandview Road, New Lambton Heights"
+            width="1600"
+            height="1067"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+        <div class="film-slide ken-b" data-bg="images/photo-02.jpg"></div>
+        <div class="film-slide ken-c" data-bg="images/photo-07.jpg"></div>
+        <div class="film-slide ken-a" data-bg="images/photo-03.jpg"></div>
+        <div class="film-slide ken-b" data-bg="images/photo-15.jpg"></div>
+        <video class="film-video" id="hero-video" muted playsinline loop preload="none" poster="images/hero-lcp.jpg">
+          <source data-src="media/hero-reel-lite.webm" type="video/webm" />
         </video>
       </div>
       <div class="film-vignette" aria-hidden="true"></div>

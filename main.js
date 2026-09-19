@@ -35,39 +35,47 @@
     }
   };
 
-  /* Ken Burns film crossfade */
+  /* Ken Burns + hero video — deferred until after LCP (CWV) */
   const slides = [...document.querySelectorAll(".film-slide")];
   let slideIdx = 0;
-  if (slides.length && !reduce) {
+  let filmReady = false;
+  const video = document.getElementById("hero-video");
+  const unmuteBtn = document.getElementById("unmute-btn");
+
+  function startFilmCycle() {
+    if (filmReady || reduce || !slides.length) return;
+    filmReady = true;
+    const lcp = document.querySelector(".film-lcp");
+    if (lcp) {
+      lcp.style.transition = "opacity .8s ease";
+      lcp.style.opacity = "0";
+    }
+    slides[0].classList.add("is-active");
     setInterval(() => {
       slides[slideIdx].classList.remove("is-active");
       slideIdx = (slideIdx + 1) % slides.length;
       slides[slideIdx].classList.add("is-active");
     }, 5200);
-  }
-
-  /* Optional hero WebM (muted) */
-  const video = document.getElementById("hero-video");
-  const unmuteBtn = document.getElementById("unmute-btn");
-  if (video) {
-    const tryPlay = () => {
-      video.muted = true;
-      const p = video.play();
-      if (p) p.then(() => video.classList.add("is-on")).catch(() => {});
-    };
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) tryPlay();
-            else video.pause();
-          });
-        },
-        { threshold: 0.35 }
-      );
-      io.observe(video);
-    } else {
-      tryPlay();
+    if (video) {
+      const tryPlay = () => {
+        video.muted = true;
+        const play = video.play();
+        if (play) play.then(() => video.classList.add("is-on")).catch(() => {});
+      };
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) tryPlay();
+              else video.pause();
+            });
+          },
+          { threshold: 0.35 }
+        );
+        io.observe(video);
+      } else {
+        tryPlay();
+      }
     }
   }
   if (unmuteBtn && video) {
@@ -218,4 +226,34 @@
   });
   setActiveChapter();
   onScrollParallax();
+
+
+  // Performance: hydrate film slides + hero video after first paint (CWV)
+  function hydrateFilm() {
+    var stage = document.getElementById("film-stage");
+    if (!stage) return;
+    stage.querySelectorAll(".film-slide[data-bg]").forEach(function (el) {
+      var src = el.getAttribute("data-bg");
+      if (src) el.style.backgroundImage = "url('" + src + "')";
+    });
+    var vid = document.getElementById("hero-video");
+    if (vid) {
+      var srcEl = vid.querySelector("source[data-src]");
+      if (srcEl && !srcEl.getAttribute("src")) {
+        srcEl.setAttribute("src", srcEl.getAttribute("data-src"));
+        vid.load();
+      }
+    }
+    setTimeout(startFilmCycle, 600);
+  }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(hydrateFilm, { timeout: 1800 });
+  } else {
+    window.addEventListener("load", function () {
+      setTimeout(hydrateFilm, 400);
+    });
+  }
+
+
+
 })();
