@@ -44,6 +44,8 @@
 
   function startFilmCycle() {
     if (filmReady || reduce || !slides.length) return;
+    /* Mobile: keep still LCP — Ken Burns + video felt shaky */
+    if (window.matchMedia("(max-width: 768px)").matches) return;
     filmReady = true;
     const lcp = document.querySelector(".film-lcp");
     if (lcp) {
@@ -55,7 +57,7 @@
       slides[slideIdx].classList.remove("is-active");
       slideIdx = (slideIdx + 1) % slides.length;
       slides[slideIdx].classList.add("is-active");
-    }, 5200);
+    }, 7000);
     if (video) {
       const tryPlay = () => {
         video.muted = true;

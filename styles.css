@@ -155,26 +155,28 @@ button { font: inherit; cursor: pointer; }
   position: absolute; inset: 0; background: #000;
 }
 .film-slide {
-  position: absolute; inset: -6%;
+  position: absolute; inset: -4%;
   background-size: cover; background-position: center 35%;
-  opacity: 0; transition: opacity 1.4s var(--ease);
-  will-change: transform, opacity;
+  opacity: 0; transition: opacity 1.8s var(--ease);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .film-slide.is-active { opacity: 1; z-index: 1; }
-.ken-a { animation: kenA 14s ease-in-out infinite alternate; }
-.ken-b { animation: kenB 16s ease-in-out infinite alternate; }
-.ken-c { animation: kenC 15s ease-in-out infinite alternate; }
+/* Calm Ken Burns — small scale, no %-translates (those jitter on mobile GPUs) */
+.ken-a { animation: kenA 22s linear infinite alternate; }
+.ken-b { animation: kenB 26s linear infinite alternate; }
+.ken-c { animation: kenC 24s linear infinite alternate; }
 @keyframes kenA {
-  from { transform: scale(1) translate(0,0); }
-  to { transform: scale(1.12) translate(-2%, 1%); }
+  from { transform: translate3d(0,0,0) scale(1.02); }
+  to { transform: translate3d(0,0,0) scale(1.06); }
 }
 @keyframes kenB {
-  from { transform: scale(1.08) translate(2%, -1%); }
-  to { transform: scale(1) translate(-1%, 2%); }
+  from { transform: translate3d(0,0,0) scale(1.05); }
+  to { transform: translate3d(0,0,0) scale(1.02); }
 }
 @keyframes kenC {
-  from { transform: scale(1.05) translate(-1%, 2%); }
-  to { transform: scale(1.14) translate(1%, -2%); }
+  from { transform: translate3d(0,0,0) scale(1.03); }
+  to { transform: translate3d(0,0,0) scale(1.07); }
 }
 
 .film-video {
@@ -182,7 +184,18 @@ button { font: inherit; cursor: pointer; }
   object-fit: cover; opacity: 0; z-index: 2;
   transition: opacity .8s; pointer-events: none;
 }
-.film-video.is-on { opacity: .55; }
+.film-video.is-on { opacity: .35; }
+
+/* Phones: static LCP hero only — no Ken Burns / no film overlay (shaky) */
+@media (max-width: 768px) {
+  .film-slide, .ken-a, .ken-b, .ken-c {
+    animation: none !important;
+    transform: none !important;
+    opacity: 0 !important;
+  }
+  .film-lcp { opacity: 1 !important; z-index: 2; }
+  .film-video, .film-video.is-on { display: none !important; }
+}
 
 .film-vignette {
   position: absolute; inset: 0; z-index: 3; pointer-events: none;
