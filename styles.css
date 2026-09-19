@@ -104,17 +104,18 @@ button { font: inherit; cursor: pointer; }
   background: rgba(7,13,24,.92); backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.brand { display: flex; align-items: center; gap: .7rem; color: #fff; }
-.brand__mark {
-  width: 1.6rem; height: 1.6rem; border-radius: .35rem;
-  background: linear-gradient(135deg, var(--gold), #8a6a2e);
-  clip-path: polygon(50% 8%, 92% 32%, 92% 92%, 8% 92%, 8% 32%);
+.brand {
+  display: flex; align-items: center; color: #fff;
+  flex-shrink: 1; min-width: 0; max-width: min(220px, 52vw);
 }
-.brand__text {
-  font-size: .78rem; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; display: flex; flex-direction: column; line-height: 1.2;
+.brand__logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
-.brand__text span { font-weight: 400; opacity: .55; font-size: .65rem; letter-spacing: .12em; }
 .topbar__actions { display: flex; align-items: center; gap: .85rem; }
 .ghost-link {
   color: var(--muted); font-size: .78rem; letter-spacing: .04em;
@@ -627,7 +628,15 @@ input:focus, select:focus, textarea:focus {
 }
 .footer-inner { max-width: 1100px; }
 .footer-brand {
-  font-family: var(--serif); font-size: 1.4rem; margin-bottom: .5rem; color: var(--gold-2);
+  margin-bottom: .75rem;
+}
+.footer-brand__logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: min(280px, 70vw);
+  object-fit: contain;
+  object-position: left center;
 }
 .site-footer p { margin: .35rem 0; color: var(--muted); font-size: .88rem; }
 .footer-meta { margin-top: 1.5rem !important; font-size: .75rem !important; }
@@ -667,9 +676,9 @@ input:focus, select:focus, textarea:focus {
 
 @media (max-width: 900px) {
   .demo-badge { font-size: .62rem; padding: .35rem .7rem; }
-  .topbar { top: 2.1rem; padding: .55rem 1rem; }
+  .topbar { top: 2.1rem; padding: .55rem .85rem; gap: .5rem; }
   .topbar__actions .ghost-link { display: none; }
-  .brand__text span { display: none; }
+  .brand__logo { height: 32px; }
 
   .film-hero {
     min-height: 72svh;
